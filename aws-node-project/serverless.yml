@@ -1,0 +1,28 @@
+service: aws-node-project
+
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+
+  stage: dev
+  region: eu-west-1
+
+functions:
+  getProductList:
+    handler: src/handlers/get-product-list.handler
+    events:
+      - http:
+          path: api/getproducts
+          method: get
+          cors: true
+          get-products:
+  getProductsListById:
+    handler: src/handlers/get-product-list-by-id.handler
+    events:
+      - http:
+          path: api/getproductbyid/{id}
+          method: get
+          cors: true
